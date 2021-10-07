@@ -9,7 +9,7 @@ use App\Models\ContentHelper;
 use App\Models\ServerSetting;
 use App\Models\Word;
 
-ini_set('memory_limit', '512M');
+
 
 
 class Cleaner2 extends Command
@@ -48,12 +48,11 @@ class Cleaner2 extends Command
         //Word::truncate();
     
 
-       // for ($i = 200; $i < 250; $i++) {
-            $startId = 4000; // $i * 25;
-            $finishId = 7500;
-            $contents = Content::where('id', ">=", $startId)->where('id', "<=", $finishId)->where('status', 0)->get();
-$this->writeAgain($contents);
-       // }
+        for ($i = 4000; $i < 7500; $i++) {
+            $contents = Content::where('id',$i)->where('status', 0)->get();
+            if(count($contents) > 0)
+            $this->writeAgain($contents);
+        }
     }
 
     public function writeAgain($contents)
@@ -324,11 +323,7 @@ $this->writeAgain($contents);
 
     public function cleanContentTag($text, $tag, $type)
     {
-        $time_limit = ini_get('max_execution_time');
-        $memory_limit = ini_get('memory_limit');
-    
-        set_time_limit(0);
-        ini_set('memory_limit', '-1');      
+  
 
         $response_content = $text;
         $tagStart = "<$tag";
@@ -351,10 +346,6 @@ $this->writeAgain($contents);
             }
         }
 
-
-
-        set_time_limit($time_limit);
-        ini_set('memory_limit', $memory_limit); 
 
 
         return $response_content;
@@ -416,7 +407,7 @@ $this->writeAgain($contents);
                 $word = $word_control->first();
                 $word->count = $word->count + 1;
             } else {
-                $word->word = $value2;
+                $word->word = trim($value2,"  ");
                 $word->count = 1;
             }
             $word->save();

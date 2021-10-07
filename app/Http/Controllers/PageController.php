@@ -28,9 +28,9 @@ class PageController extends Controller
   public function create_sitemap(Request $request)
   {
 
-    $website_link = "websitelink.com";
+    $website_link = "https://renterall.com";
     $now = date('Y.m.d', strtotime("-1 days"));
-    $sitemapFile = fopen("/Users/muzaffer/Sites/domain/public/website/sitemap.xml", "w") or die("Unable to open file!");
+    $sitemapFile = fopen("/home/nox/Sites/website/sitemap.xml", "w") or die("Unable to open file!");
     fwrite($sitemapFile, '<?xml version="1.0" encoding="UTF-8"?>
         <urlset
               xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
@@ -40,7 +40,7 @@ class PageController extends Controller
         
         \n');
 
-    $contents = Content::where('id', ">=", 0)->where('id', "<=", 10)->where('status', 2)->get();
+    $contents = Content::where('status', 2)->get();
 
     foreach ($contents as $key => $content) {
       fwrite($sitemapFile, '<url>
@@ -73,9 +73,11 @@ class PageController extends Controller
         //        dd($contents);
         $contents = $this->myshuffle($contents);
 
-        if (count($contents) > 0) {
+        if (count($contents) > 1) {
           $id = 0;
           if ($contents[0]->id == $value->content_id) {
+            echo $value->content_id;
+            dd($contents);
             $id = $contents[1]->id;
           } else {
             $id = $contents[0]->id;
@@ -125,12 +127,27 @@ class PageController extends Controller
   public function create_page(Request $request)
   {
 
+    ini_set('max_execution_time', '0'); //300 seconds = 5 minutes
 
-    $model = Content::where('id', 55)->get()->first();
+    $contets = Content::where('status',2)->get();
+   foreach ($contets as $key => $value) {
+     if($key==10)
+     dd('done');
+     $this->create_page_from_model($value->id);
+   }
+   
+  
+  
+  
+  }
+  
+  public function create_page_from_model($id)
+  {
+    $model = Content::where('id', $id)->get()->first();
     $bet_campanies = BetCompany::where('type', 1)->get();
     $bet_campanies_all = BetCompany::all();
 
-    $website_link = "http://127.0.0.1:8000/website";
+    $website_link = "https://renterall.com";
     $title = $model->last_title;
     $description = $model->last_description;
     $link = $model->last_link;
@@ -139,6 +156,7 @@ class PageController extends Controller
     $content = $this->content_helper_changer($model, $content);
 
     $this->create_page_function($model, $website_link, $link, $title, $description, $content, $bet_campanies, $bet_campanies_all);
+  
   }
 
   public function create_page_function($model, $website_link, $link, $title, $description, $content, $bet_campanies, $bet_campanies_all)
@@ -148,10 +166,10 @@ class PageController extends Controller
     $this->create_image_for_page($link."-3");
 
 
-    $phpFile = fopen("/Users/muzaffer/Sites/domain/public/website/pages/" . $link . ".php", "w") or die("Unable to open file!");
-    $htmlFile = fopen("/Users/muzaffer/Sites/domain/public/website/pages/" . $link . ".html", "w") or die("Unable to open file!");
-    $phpFileAmp = fopen("/Users/muzaffer/Sites/domain/public/website/pages/" . $link . "-amp.php", "w") or die("Unable to open file!");
-    $htmlFileAmp = fopen("/Users/muzaffer/Sites/domain/public/website/pages/" . $link . "-amp.html", "w") or die("Unable to open file!");
+    $phpFile = fopen("/home/nox/Sites/website/pages/" . $link . ".php", "w") or die("Unable to open file!");
+    $htmlFile = fopen("/home/nox/Sites/website/pages/" . $link . ".html", "w") or die("Unable to open file!");
+    $phpFileAmp = fopen("/home/nox/Sites/website/pages/" . $link . "-amp.php", "w") or die("Unable to open file!");
+    $htmlFileAmp = fopen("/home/nox/Sites/website/pages/" . $link . "-amp.html", "w") or die("Unable to open file!");
     
     fwrite($phpFile, "<?php include '../router.php';?>");
     fwrite($phpFileAmp, "<?php include '../router.php';?>");
@@ -204,9 +222,9 @@ class PageController extends Controller
       $image3 = '<amp-img data-amp-auto-lightbox-disable class="" layout="responsive" src="' . $website_link . '/images/' . $link . '-3.webp" alt="' . $model->last_title . '-3" width="1280" height="720"></amp-img>';
   
     }else{
-      $image = '<img class="w3-container" src="' . $website_link . '/images/' . $link . '.webp" alt="' . $model->last_title . '" />';
-      $image2 = '<img class="w3-container"  src="' . $website_link . '/images/' . $link . '-2.webp" alt="' . $model->last_title . '-2" />';
-      $image3 = '<img class="w3-container" src="' . $website_link . '/images/' . $link . '-3.webp" alt="' . $model->last_title . '-3"/>';
+      $image = '<img class="responsive w3-container" src="' . $website_link . '/images/' . $link . '.webp" alt="' . $model->last_title . '" />';
+      $image2 = '<img class="responsive w3-container"  src="' . $website_link . '/images/' . $link . '-2.webp" alt="' . $model->last_title . '-2" />';
+      $image3 = '<img class="responsive w3-container" src="' . $website_link . '/images/' . $link . '-3.webp" alt="' . $model->last_title . '-3"/>';
     }
  
     $table = $this->create_table($bet_campanies, $website_link);
@@ -822,8 +840,8 @@ class PageController extends Controller
   function create_image_for_page($imageName)
   {
     // Image
-    $dir = '/Users/muzaffer/Sites/domain/public/website/images/';
-    $sourceDir = '/Users/muzaffer/Sites/domain/public/website/source-images/';
+    $dir = '/home/nox/Sites/website/images/';
+    $sourceDir = '/home/nox/Sites/website/source-images/';
 
     $new_w = 1280;
     $new_h = 720;

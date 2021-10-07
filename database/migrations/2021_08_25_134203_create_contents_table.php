@@ -15,21 +15,21 @@ class CreateContentsTable extends Migration
     {
         Schema::create('contents', function (Blueprint $table) {
             $table->id();
-            $table->longText('first_link');
-            $table->longText('first_title');
-            $table->longText('first_description');
-            $table->longText('first_content');
+            $table->text('first_link');
+            $table->text('first_title');
+            $table->text('first_description');
+            $table->text('first_content');
 
-            $table->longText('rewriter_title')->nullable();
-            $table->longText('rewriter_description')->nullable();
-            $table->longText('rewriter_content')->nullable();
+            $table->text('rewriter_title')->nullable();
+            $table->text('rewriter_description')->nullable();
+            $table->text('rewriter_content')->nullable();
             
-            $table->longText('last_link')->nullable();
-            $table->longText('last_title')->nullable();
-            $table->longText('last_description')->nullable();
-            $table->longText('last_content')->nullable();
+            $table->text('last_link')->nullable();
+            $table->text('last_title')->nullable();
+            $table->text('last_description')->nullable();
+            $table->text('last_content')->nullable();
 
-            $table->longText('first_category')->nullable();
+            $table->text('first_category')->nullable();
             $table->integer('status')->default(0); 
             $table->integer('website_id')->default(0); 
             $table->integer('bet_company_id')->default(1); 

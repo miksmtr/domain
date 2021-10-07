@@ -8,7 +8,7 @@ use App\Models\Content;
 use App\Models\ContentHelper;
 use App\Models\ServerSetting;
 use App\Models\Word;
-ini_set('memory_limit', '512M');
+
 
 
 class Cleaner extends Command
@@ -48,49 +48,43 @@ class Cleaner extends Command
    
        
 
-       // for ($i = 0; $i < 50; $i++) {
-            $startId = 0; // $i * 25;
-            $finishId = 4000;
-            $contents = Content::where('id', ">=", $startId)->where('id', "<=", $finishId)->where('status', 0)->get();
-            $this->writeAgain($contents);
-        //}
+        for ($i = 0; $i < 4000; $i++) {
+            $contents = Content::where('id',$i)->where('status', 0)->get();
+            if(count($contents) > 0){
+                $this->writeAgain($contents);
+
+            }
+        }
     }
 
     public function writeAgain($contents)
     {
         $companies = BetCompany::all();
+
         $this->browse(function ($browser) use ($contents, $companies) {
+        foreach ($contents as $key => $value) {
 
-            $browser->visit('https://aiarticlespinner.co')->pause(5000);
-          //  $browser->script("document.getElementById('refase').click();");
-         //   $browser->pause(5000);
-            foreach ($contents as $key => $value) {
+                $browser->visit('https://aiarticlespinner.co');
                 $validatedData = [];
-
-
-                // YENİDEN YAZDIR!!
                 $last_content = '';
                 $content_array =  $this->seperator($value);
                 $last_description = $this->browserCu($browser, $value->first_description);
-                //dd($last_description);
                 foreach ($content_array as $key2 => $value2) {
                     $response_content =  $this->cleanSomething($value2[1]);
-                    $response_content =  $this->browserCu($browser, $response_content);
-                    if ($response_content) {
+            
 
-                            $content_helper = new ContentHelper();
+                    $response_content =  $this->browserCu($browser, $response_content); 
+                    if ($response_content) {
+                        $content_helper = new ContentHelper();
                         $content_helper->h = $value2[0];
                         $content_helper->p = $response_content;
                         $content_helper->content_id = $value->id;
                         $content_helper->save();
-
-
                         $responseTitle = "<h1>" . $value2[0] . "</h1>";
                         $response_content = "<p>" . $response_content . "</p>";
                         $last_content = $last_content . $responseTitle . $response_content;
                     }
                 }
-
                 // KAYDET
                 if ($last_content !== '') {
                     $validatedData =
@@ -106,8 +100,10 @@ class Cleaner extends Command
                     // KELİMELERİ EKLE
                     $this->addWord($value);
                 }
-            }
+    }
+
         });
+
     }
 
     public function browserCu($browser, $content)
@@ -325,12 +321,7 @@ class Cleaner extends Command
     public function cleanContentTag($text, $tag, $type)
     {
 
-    
-        $time_limit = ini_get('max_execution_time');
-        $memory_limit = ini_get('memory_limit');
-    
-        set_time_limit(0);
-        ini_set('memory_limit', '-1');    
+ 
         $response_content = $text;
         $tagStart = "<$tag";
         if (!$type)
@@ -351,8 +342,7 @@ class Cleaner extends Command
                 $response_content = $start_text . $end_text;
             }
         }
-        set_time_limit($time_limit);
-        ini_set('memory_limit', $memory_limit); 
+  
 
 
 
@@ -418,7 +408,7 @@ class Cleaner extends Command
                 $word = $word_control->first();
                 $word->count = $word->count + 1;
             } else {
-                $word->word = $value2;
+                $word->word = trim($value2,"  ");
                 $word->count = 1;
             }
             $word->save();

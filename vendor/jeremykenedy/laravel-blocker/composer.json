@@ -1,0 +1,42 @@
+{
+    "name": "jeremykenedy/laravel-blocker",
+    "description": "",
+    "keywords": [
+            "laravel blocker",
+            "laravel IP blocker",
+            "laravel Email blocker",
+            "Email blocker",
+            "User blocker",
+            "IP blocker",
+            "Blocker"
+        ],
+    "license": "MIT",
+    "type": "package",
+    "authors": [
+        {
+            "name": "Jeremy Kenedy",
+            "email": "jeremykenedy@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.3|^8.0",
+        "eklundkristoffer/seedster": "^4.0",
+        "laravelcollective/html": "^6.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "jeremykenedy\\LaravelBlocker\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "jeremykenedy\\LaravelBlocker\\LaravelBlockerServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "stable"
+}

@@ -8,7 +8,7 @@ use App\Models\Content;
 use App\Models\ContentHelper;
 use App\Models\ServerSetting;
 use App\Models\Word;
-ini_set('memory_limit', '512M');
+
 
 
 class Cleaner4 extends Command
@@ -324,11 +324,7 @@ $this->writeAgain($contents);
     public function cleanContentTag($text, $tag, $type)
     {
     
-        $time_limit = ini_get('max_execution_time');
-        $memory_limit = ini_get('memory_limit');
-    
-        set_time_limit(0);
-        ini_set('memory_limit', '-1');   
+ 
         $response_content = $text;
         $tagStart = "<$tag";
         if (!$type)
@@ -350,11 +346,6 @@ $this->writeAgain($contents);
             }
         }
 
-
-
-
-        set_time_limit($time_limit);
-        ini_set('memory_limit', $memory_limit); 
 
 
 
@@ -417,7 +408,7 @@ $this->writeAgain($contents);
                 $word = $word_control->first();
                 $word->count = $word->count + 1;
             } else {
-                $word->word = $value2;
+                $word->word = trim($value2,"  ");
                 $word->count = 1;
             }
             $word->save();

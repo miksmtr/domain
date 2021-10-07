@@ -69,5 +69,6 @@ function redirect($url) {
 die();
     }else{
         include $url;
+        include $url;
     }
 }

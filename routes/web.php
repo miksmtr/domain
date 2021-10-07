@@ -636,8 +636,8 @@ Route::redirect('/php', '/phpinfo', 301);
 Route::get('/create_image_from_big_images', function () {
 
     // Image
-    $dir = '/Users/muzaffer/Sites/domain/public/website/source-images/';
-    $sourceDir = '/Users/muzaffer/Downloads/images/';
+    $dir = '/home/nox/Sites/website/source-images/';
+    $sourceDir = '/home/nox/Downloads/images/';
     $files = scandir($sourceDir);
 
     for ($i = 3; $i < count($files); $i++) {

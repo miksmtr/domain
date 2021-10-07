@@ -1,0 +1,57 @@
+{
+    "name": "toin0u/digitalocean-v2",
+    "description": "DigitalOcean API v2 client for PHP",
+    "keywords": ["DigitalOcean", "API", "Cloud Hosting", "SSD", "VPS"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Antoine Corcy",
+            "email": "contact@sbin.dk"
+        },
+        {
+            "name": "Graham Campbell",
+            "email": "graham@alt-three.com"
+        },
+        {
+            "name": "Yassir Hannoun",
+            "email": "yassir.hannoun@gmail.com"
+        },
+        {
+            "name": "Glenn Jacobs",
+            "email": "glenn@neondigital.co.uk"
+        },
+        {
+            "name": "Cameron Van Orman",
+            "email": "cameron@efelle.com"
+        }
+    ],
+    "require": {
+        "php": "^7.2.5 || ^8.0",
+        "ext-json": "*",
+        "php-http/client-common": "^2.3",
+        "php-http/discovery": "^1.12",
+        "php-http/httplug": "^2.2",
+        "psr/http-client-implementation": "^1.0",
+        "psr/http-factory-implementation": "^1.0",
+        "psr/http-message": "^1.0",
+        "symfony/polyfill-php80": "^1.17"
+    },
+    "require-dev": {
+        "bamarni/composer-bin-plugin": "^1.4.1",
+        "guzzlehttp/guzzle": "^7.2",
+        "http-interop/http-factory-guzzle": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "DigitalOceanV2\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "DigitalOceanV2\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "preferred-install": "dist"
+    }
+}
