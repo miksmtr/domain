@@ -27,9 +27,10 @@ use Illuminate\Support\Facades\Request;
 use phpseclib3\Net\SSH2;
 
 Route::get('/wordcreator', function () {
-    ini_set('max_execution_time', 18000); //3 minutes
-    $contents = ContentHelper::all();
-    dd($contents);
+
+
+    BetCompany::truncate();
+
 });
 
 
