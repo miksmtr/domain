@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '2d978b78a38c2da8c345788726b2b2cc2c6a1b3a',
+        'reference' => 'b4a92590b0b05baba7ce746487ad005b5e6166d7',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -75,6 +75,15 @@
             'replaced' => array(
                 0 => '*',
             ),
+        ),
+        'derekmd/laravel-dusk-firefox' => array(
+            'pretty_version' => 'v1.6.1',
+            'version' => '1.6.1.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../derekmd/laravel-dusk-firefox',
+            'aliases' => array(),
+            'reference' => 'f2a534f475acb4261238df8f37b8e7e8fad040f7',
+            'dev_requirement' => true,
         ),
         'dflydev/dot-access-data' => array(
             'pretty_version' => 'v3.0.1',
@@ -622,7 +631,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '2d978b78a38c2da8c345788726b2b2cc2c6a1b3a',
+            'reference' => 'b4a92590b0b05baba7ce746487ad005b5e6166d7',
             'dev_requirement' => false,
         ),
         'laravel/serializable-closure' => array(

@@ -397,6 +397,72 @@
             "install-path": "../creativeorange/gravatar"
         },
         {
+            "name": "derekmd/laravel-dusk-firefox",
+            "version": "v1.6.1",
+            "version_normalized": "1.6.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/derekmd/laravel-dusk-firefox.git",
+                "reference": "f2a534f475acb4261238df8f37b8e7e8fad040f7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/derekmd/laravel-dusk-firefox/zipball/f2a534f475acb4261238df8f37b8e7e8fad040f7",
+                "reference": "f2a534f475acb4261238df8f37b8e7e8fad040f7",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^6.0|^7.0",
+                "laravel/dusk": "^6.0",
+                "php": "^7.2|^8.0",
+                "php-webdriver/webdriver": "^1.11.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.0",
+                "mockery/mockery": "^1.4",
+                "orchestra/testbench": "^6.15",
+                "phpunit/phpunit": "^9.5"
+            },
+            "time": "2021-07-31T09:19:07+00:00",
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Derekmd\\Dusk\\DuskServiceProvider"
+                    ]
+                }
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "Derekmd\\Dusk\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Derek MacDonald",
+                    "email": "derekmd@hotmail.com"
+                }
+            ],
+            "description": "Run Laravel Dusk tests in a Firefox browser",
+            "homepage": "https://github.com/derekmd/laravel-dusk-firefox",
+            "keywords": [
+                "dusk",
+                "firefox",
+                "geckodriver",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/derekmd/laravel-dusk-firefox/issues",
+                "source": "https://github.com/derekmd/laravel-dusk-firefox"
+            },
+            "install-path": "../derekmd/laravel-dusk-firefox"
+        },
+        {
             "name": "dflydev/dot-access-data",
             "version": "v3.0.1",
             "version_normalized": "3.0.1.0",
@@ -11890,6 +11956,7 @@
     "dev": true,
     "dev-package-names": [
         "barryvdh/laravel-debugbar",
+        "derekmd/laravel-dusk-firefox",
         "doctrine/instantiator",
         "facade/flare-client-php",
         "facade/ignition",
