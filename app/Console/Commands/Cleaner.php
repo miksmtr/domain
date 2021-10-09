@@ -112,7 +112,7 @@ class Cleaner extends Command
         $pleaseWaitText = "Paraphrasing Text. Please Wait...";
         $pleaseWaitText2 = "Metni dönüştürün, lütfen bekleyin...";
         $responseText = false;
-        if(strlen($content) > 3000){
+        if(strlen($content) > 5000){
             return $responseText;
         }
 

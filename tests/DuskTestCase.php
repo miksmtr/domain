@@ -21,10 +21,6 @@ abstract class DuskTestCase extends BaseTestCase
      */
     public static function prepare()
     {
-        if (static::runningFirefoxInSail()) {
-            return;
-        }
-
         static::startFirefoxDriver();
     }
 
@@ -40,7 +36,7 @@ abstract class DuskTestCase extends BaseTestCase
         $capabilities->getCapability(FirefoxOptions::CAPABILITY)
             ->addArguments($this->filterHeadlessArguments([
                 '--headless',
-                '--window-size=1920,1080',
+                '--window-size=400,400',
             ]))
             ->setPreference('devtools.console.stdout.content', true);
 

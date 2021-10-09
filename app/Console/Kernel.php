@@ -15,10 +15,10 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         Commands\DeleteExpiredActivations::class,
         Commands\DailyQuote::class,
-        Commands\CheckDomains::class,
-        Commands\AddNewDomain::class,
-        Commands\WebsitePicker::class,
-        Commands\WebsitePickerSecond::class,
+       // Commands\CheckDomains::class,
+       // Commands\AddNewDomain::class,
+      //  Commands\WebsitePicker::class,
+       // Commands\WebsitePickerSecond::class,
        
 
     ];
@@ -34,10 +34,10 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')->hourly();
         $schedule->command('quote:everyMinute')->everyMinute();
-        $schedule->command('quote:addNewDomain')->everyMinute();
-        $schedule->command('quote:checkDomains')->everyMinute();
-        $schedule->command('quote:websitePicker')->everyMinute();
-        $schedule->command('quote:websitePickerSecond')->everyMinute();
+      //  $schedule->command('quote:addNewDomain')->everyMinute();
+      //  $schedule->command('quote:checkDomains')->everyMinute();
+      //  $schedule->command('quote:websitePicker')->everyMinute();
+      //  $schedule->command('quote:websitePickerSecond')->everyMinute();
         $schedule->command('activations:clean')->daily();
  
    

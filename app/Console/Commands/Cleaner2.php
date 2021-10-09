@@ -117,7 +117,7 @@ class Cleaner2 extends Command
 
         $responseText = false;
 
-        if(strlen($content) > 3000){
+        if(strlen($content) > 5000){
             return $responseText;
         }
         try {

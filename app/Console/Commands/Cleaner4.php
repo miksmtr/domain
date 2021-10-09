@@ -117,7 +117,7 @@ $this->writeAgain($contents);
 
         $responseText = false;
 
-        if(strlen($content) > 3000){
+        if(strlen($content) > 5000){
             return $responseText;
         }
         try {
