@@ -26,12 +26,7 @@ class LoginTest extends DuskTestCase
     public function testExample()
     {
         
-        session()->flush();
-        parent::tearDown();
-        $this->browse(function (Browser $browser) {
-            $browser->driver->manage()->deleteAllCookies();
-        });
-        $this->logout();
+
 
 
 
