@@ -25,6 +25,16 @@ class LoginTest extends DuskTestCase
      */
     public function testExample()
     {
+        
+        session()->flush();
+        parent::tearDown();
+        $this->browse(function (Browser $browser) {
+            $browser->driver->manage()->deleteAllCookies();
+        });
+        $this->logout();
+
+
+
         $contents = Content::where('id','>=',0)->where('id','<',4000)->where('status', 0)->paginate(1);
         $this->writeAgain($contents);
     }
